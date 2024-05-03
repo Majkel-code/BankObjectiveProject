@@ -9,49 +9,113 @@
 
 </head>
 <body>
-    <header>
+    <!-- <header>
         <div class="logo">
             <img src="img/png/Black logo - no background.png">
         </div>
-    </header>
+    </header> -->
     <nav>
         <div class="navi">
-            <a href="openacc.html">Pomoc i Kontakt</a>
-            <a href="login.html">Zaloguj się</a>
-            <a id="acc" href="openacc.html">Otwórz konto</a>
+            <div class="left-navi">
+                <!-- <div class="logo-main">
+                    <img src="img/png/Black logo - no background.png">
+                </div> -->
+                <a href="#" class="main-page btn help-button">Pomoc i Kontakt</a>
+            </div>
+            <div class="right-navi">
+                <a href="#" class="main-page btn login-button">Zaloguj sie</a>
+                <!-- <a href="login.html">Zaloguj się</a> -->
+                <a href="#" class="main-page btn registry-button">Otwórz konto</a>
+            </div>
         </div>
-        <hr>
     </nav>
     <main>
         <h1>Oferta</h1>
-        <div class="cloud">
-            <img src="img/png/icon1.svg" alt="icon" class="icon">
-            <h2>Konta</h2>
-            <p>Zobacz konta indywidualne i wspólne - dla osób w każdym wieku</p>
+        <div class="cloud-container">
+
+            <div class="cloud cloud1">
+                <img src="img/png/icon1.svg" alt="icon" class="icon">
+                <h2>Konta</h2>
+                <p>Zobacz konta indywidualne i wspólne - dla osób w każdym wieku</p>
+            </div>
+            
+            <div class="cloud cloud2">
+                <img src="img/png/icon1.svg" alt="icon" class="icon">
+                <h2>Karty i płatności</h2>
+                <p>Płać wygodnie kartą, telefonem - w sklepach i internecie</p>
+            </div>
+           
+            <div class="cloud cloud3">
+                <img src="img/png/icon1.svg" alt="icon" class="icon">
+                <h2>Oszczędności i inwestycje</h2>
+                <p>Znajdź swój sposób na pomnażanie kapitału</p>
+            </div>
+            
+            <div class="cloud cloud4">
+                <img src="img/png/icon1.svg" alt="icon" class="icon">
+                <h2>Ubezpieczenia</h2>
+                <p>Obejmij ochroną to, co jest dla Ciebie ważne</p>
+            </div> 
+            <div class="cloud cloud5">
+                <img src="img/png/icon1.svg" alt="icon" class="icon">
+                <h2>Pożyczki i kredyty</h2>
+                <p>Planujesz większe zakupy lub kupno nieruchomości? Sfinansuj marzenia z nam</p>
+            </div> 
         </div>
-        
-        <div class="cloud2">
-            <img src="img/png/icon1.svg" alt="icon" class="icon">
-            <h2>Karty i płatności</h2>
-            <p>Płać wygodnie kartą, telefonem - w sklepach i internecie</p>
+
+        <div class="popup-container">
+            <button class="close-btn close-popup">X</button>
+            <div class="login">
+                <h1>Zaloguj</h1>
+                <div class="login-inputs">
+                    <input id="login-user-number" type="text" placeholder="Numer Klienta" value="99999">
+                    <input id="login-password" type="password" placeholder="Password" value="testpassword">
+                </div>
+                <p class="error-msg">!</p>
+                <button id="btn1">Zaloguj</button>
+            </div>
+
+
+
+            <div class="register">
+                <h1>Utwórz Konto</h1>
+                <div class="form-box">
+                    <label for="reg-name">Imie:</label>
+                    <input id="reg-name" type="text" placeholder="Imie">
+                    <p class="error-text">error</p>
+                </div>
+                <div class="form-box">
+                    <label for="reg-surname">Nazwisko:</label>
+                    <input id="reg-surname" type="text" placeholder="Nazwisko">
+                    <p class="error-text">error</p>
+                </div>
+                <div class="form-box">
+                    <label for="reg-pesel">PESEL:</label>
+                    <input id="reg-pesel" type="text" placeholder="Pesel" maxlength="11" minlength="11">
+                    <p class="error-text">error</p>
+                </div>
+                <div class="form-box">
+                    <label for="reg-email">Adres e-mail:</label>
+                    <input id="reg-email" type="email" placeholder="Email">
+                    <p class="error-text">error</p>
+                </div>
+                <div class="form-box">
+                    <label for="reg-password">Hasło:</label>
+                    <input id="reg-password" type="password" placeholder="Hasło">
+                    <p class="error-text">error</p>
+                </div>
+                <div class="form-box">
+                    <label for="reg-password-repeat">Powtórz hasło:</label>
+                    <input id="reg-password-repeat" type="password" placeholder="Powtórz Hasło">
+                    <p class="error-text">error</p>
+                </div>
+                <button id="showToast">Stwórz</button>
+            </div>
         </div>
-       
-        <div class="cloud3">
-            <img src="img/png/icon1.svg" alt="icon" class="icon">
-            <h2>Oszczędności i inwestycje</h2>
-            <p>Znajdź swój sposób na pomnażanie kapitału</p>
+        <div class="popup-showToast">
+            <p></p>
+            <button class="close-Toast">Zamknij</button>
         </div>
-        
-        <div class="cloud4">
-            <img src="img/png/icon1.svg" alt="icon" class="icon">
-            <h2>Ubezpieczenia</h2>
-            <p>Obejmij ochroną to, co jest dla Ciebie ważne</p>
-        </div> 
-        <div class="cloud5">
-            <img src="img/png/icon1.svg" alt="icon" class="icon">
-            <h2>Pożyczki i kredyty</h2>
-            <p>Planujesz większe zakupy lub kupno nieruchomości? Sfinansuj marzenia z nam</p>
-        </div> 
     </main>
     <footer>
         <div class="left-foot">
@@ -63,5 +127,11 @@
             <a href="https://github.com" target="_blank"><img src="img/png/icon7.svg" alt="Instagram"></a>
         </div>
     </footer>
+    <div class="hide-content"></div>
+    <!-- <script src="../script/script.js"></script> -->
+    <script src="../script/bridge/pagesBridge.js"></script>
+    <script src="../script/main_display_construct.js"></script>
+    <script src="../script/login_page/loginObj.js"></script>
+    <script src="../script/register_page/registerObj.js"></script>
 </body>
 </html>

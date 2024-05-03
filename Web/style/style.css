@@ -4,6 +4,8 @@
 
 
 body {
+    height: 100vh;
+    width: 100vw;
     background-color: white;
     overflow: hidden;
 }
@@ -15,9 +17,15 @@ body {
     margin: 0;
     box-sizing: border-box;
 }
+.logo-main{
+    width: 100px;
+    height: 100%;
 
-img {
-    width:  10%;
+
+}
+.logo-main img {
+    width:  100%;
+    height: 100%;
     height: auto;
 }
 
@@ -26,7 +34,16 @@ img {
     font-weight: bold;
     font-size: 1.8rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+
+.left-navi{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.right-navi{
+    margin-top: 20px;
+    margin-right: 20px;
 }
 
 a {
@@ -34,10 +51,14 @@ a {
 }
 
 
-#acc {
-    border: 4px solid #ccc;
+.main-page.btn {
+    border-bottom: 4px solid #ccc;
     padding: 10px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
+}
+.main-page.btn:hover{
+    border-color: #333;
+    transition: border-color .3s;
 }
 
 
@@ -49,78 +70,58 @@ hr {
 
 h1 {
     text-align: center;
-    margin-top: 100px;
+    margin-bottom: 25px;
 }
 
-.cloud {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 50px;
-    width: 400px; 
-    text-align: center; 
-    position: absolute; 
-    top: 50%; 
-    left: 37%; 
-    transform: translate(-50%, -50%);
-    transition: box-shadow 0.3s ease;
+.cloud-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
 }
-
-.cloud2 {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    width: 500px; 
-    text-align: center; 
-    position: absolute; 
-    top: 44%; 
-    left: 65%; 
-    transition: box-shadow 0.3s ease;
-    transform: translate(-50%, -50%); 
-} 
-
-.cloud3 {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    width: 500px; 
-    text-align: center; 
-    position: absolute; 
-    top: 64%; 
-    left: 65%; 
-    transform: translate(-50%, -50%);
-    transition: box-shadow 0.3s ease; 
-} 
-
- .cloud4 {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    width: 500px;
-    text-align: center; 
-    position: absolute; 
-    top: 84%; 
-    left: 65%; 
-    transform: translate(-50%, -50%);
-    transition: box-shadow 0.3s ease;
-}  
-
-.cloud5 {
-    border: 1px solid #ccc;
-    border-radius: 10px;
+.cloud{
     padding: 50px;
-    width: 400px; 
-    text-align: center; 
-    position: absolute; 
-    top: 79%; 
-    left: 37%; 
-    transform: translate(-50%, -50%);
-    transition: box-shadow 0.3s ease;    
+    width: 500px; 
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+.cloud1 {
+    grid-area: 1 / 1 / 2 / 2;
+    justify-self: end;
     
 }
 
-.cloud:hover,
-.cloud2:hover,
-.cloud3:hover,
+.cloud2 {
+    grid-area: 2 / 1 / 3 / 2;
+    justify-self: end;
+} 
+
+.cloud3 {
+    grid-area: 3 / 1 / 4 / 4;;
+    justify-self: center;
+
+} 
+
+ .cloud4 {
+    grid-area: 1 / 2 / 2 / 3;
+    justify-self: start;
+}  
+
+.cloud5 {
+    grid-area: 2 / 2 / 3 / 3;
+    justify-self: start;  
+}
+.cloud1:hover,
+.cloud2:hover{
+    box-shadow: -8px 8px 24px 0px rgba(46, 46, 47, 1);
+}
+
+.cloud3:hover{
+    box-shadow: 0px 8px 24px 0px rgba(46, 46, 47, 1);
+}
 .cloud4:hover,
 .cloud5:hover {
     box-shadow: 8px 8px 24px 0px rgba(46, 46, 47, 1);
@@ -164,29 +165,52 @@ footer {
     font-weight: bold;
 }
 
-.login1 {
+.popup-container {
     width: 100%;
     max-width: 500px;
     padding: 60px;
     background: white;
+    z-index: 2;
     border: 3px #ccc solid;
     box-shadow: 8px 8px 24px 0px rgba(46, 46, 47, 1);
     border-radius: 10px;
     margin: auto;
     position: absolute;
-    top: 53%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 24px;
     font-weight: bold;
-    height: 82%;
+    display: none;
+}
+.popup-container.active{
+    display: flex;
+}
+
+.popup-container>.login{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+.popup-container>.login.active{
+    display: flex;
+}
+.login>.error-msg{
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    visibility: hidden;
+}
+.login>.error-msg.show{
+    visibility: visible;
 }
 
 .login input,
-.password input {
+.password input,
+.register input {
     width: 100%;
     align-items: center;
     margin: auto;
@@ -214,6 +238,113 @@ button {
 
 button:hover {
     background-color: grey;
+}
+
+.hide-content{
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: absolute;
+    top: 0;
+    background-color: #333;
+    opacity: 0.5;
+}
+.hide-content.active{
+    display: block;
+}
+
+.close-btn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    margin: 0;
+    width: 50px;
+    height: 50px;
+
+}
+
+
+/* REGISTRY */
+.register-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 60px;
+    background: white;
+    z-index: 2;
+    border: 3px #ccc solid;
+    box-shadow: 8px 8px 24px 0px rgba(46, 46, 47, 1);
+    border-radius: 10px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    display: none;
+}
+
+.popup-container.active{
+    display: flex;
+}
+.popup-container>.register{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+.popup-container>.register.active{
+    display: flex;
+}
+.register>.error-msg{
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    visibility: hidden;
+}
+.register .form-box {
+	width: 100%;
+    margin-bottom: 15px;
+}
+
+.form-box .error-text {
+	margin: 5px 0 0 10px;
+	font-size: 14px;
+	color: rgb(0, 137, 250);
+	visibility: hidden;
+}
+.form-box.error .error-text{
+	visibility: visible;
+}
+.popup-showToast{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -300px;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 600px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 2px solid black;
+    transition: top 0.5s;
+}
+
+.popup-showToast p{
+    font-size: 20px;
+}
+
+.popup-showToast .close-Toast{
+    margin-top: 20px;
+}
+
+.show-popup{
+    top: 150px;
 }
 
 

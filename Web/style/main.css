@@ -18,10 +18,6 @@
 .large { width: 50%; 
 }
 
-body {
-  background-color: grey ;
-}
-
 .row:before, 
 .row:after { content:""; display:table; }
 .row:after { clear:both; }

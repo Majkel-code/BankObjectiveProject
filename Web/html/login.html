@@ -24,11 +24,12 @@
     <main class="login1">
         <div class="login">
             <h1>Zaloguj</h1>
-            <div class="login">
-                    <input id="name" type="text" placeholder="Username">
-                    <input id="password" type="password" placeholder="Password">
-                    <button id="btn1">Zaloguj</button>
+            <div class="login-inputs">
+                <input id="login-user-number" type="text" placeholder="Numer Klienta" value="99999">
+                <input id="login-password" type="password" placeholder="Password" value="testpassword">
             </div>
+            <p class="error-msg">!</p>
+            <button id="btn1">Zaloguj</button>
     </main>
     <footer>
         <div class="left-foot">
@@ -40,9 +41,6 @@
             <a href="https://github.com" target="_blank"><img src="img/png/icon7.svg" alt="Instagram"></a>
         </div>
     </footer>
-    <script> 
-        document.getElementById('btn1').addEventListener('click', function() {
-        window.location.href = 'dashboard.html';
-    });</script>
+    <script src="../script/login_page/loginObj.js"></script>
 </body>
 </html>
