@@ -159,6 +159,10 @@ body {
     width: 100%;
     object-fit: cover;
 }
+.profile-main .profile-info{
+    display: flex;
+    flex-direction: column;
+}
 
 .profile-main .profile-info h3 {
     font-style: normal;
@@ -170,7 +174,7 @@ body {
 
 }
 
-.profile-main .profile-info span {
+.profile-main .profile-info p {
     color: #828282;
     font-style: normal;
     font-weight: 600;

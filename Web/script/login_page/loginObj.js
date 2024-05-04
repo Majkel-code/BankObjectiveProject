@@ -74,8 +74,10 @@ async function processUser(){
         if (response_err["STATUS"]){
           user_login.dataToLoad = response_err["DATA"];
           user_login.saveData();
-            window.location.href = 'dashboard.html';
-            console.log("LOGIN->")
+          window.open("dashboard.html", '_self');
+          
+          // window.location.href = 'dashboard.html';
+          console.log("LOGIN->")
         }
         else{
           user_login.reloadErrorPage();

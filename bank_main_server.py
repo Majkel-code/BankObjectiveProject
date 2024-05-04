@@ -4,6 +4,7 @@ import yaml
 from fastapi import FastAPI, Request
 import routers.login.login_req as login_req
 import routers.register.register_req as register_req
+import routers.load_transfer.load_transfers as load_transfers
 from fastapi.middleware.cors import CORSMiddleware
 from users.user_authorization.user_reader import UsersReader
 from configs.web_runner.open_browser import WebRunner
@@ -20,6 +21,7 @@ class Server:
         self.app = FastAPI()
         self.app.include_router(login_req.router)
         self.app.include_router(register_req.router)
+        self.app.include_router(load_transfers.router)
         self.server = uvicorn.Server
         UsersReader()
         if opt1_value is not None:

@@ -2,6 +2,7 @@ class LoginRegistryConstructor extends MultiPageBridge{
     constructor() {
       super();
       localStorage.clear();
+    //   this.checkIsUserLogout();
       this.acc_id = null;
       this.acc_number = null;
       this.password = null;
@@ -11,6 +12,13 @@ class LoginRegistryConstructor extends MultiPageBridge{
       this.email = null;
       this.rep_password = null;
     }
+
+    // checkIsUserLogout(){
+    //     if (localStorage.logout){
+    //         console.log("HERE!!!")
+    //         localStorage.clear();
+    //     }
+    // }
 
     async checkProperties(user_id, password){
         if (user_id != "" && password != "" && (password).length >= 8){
