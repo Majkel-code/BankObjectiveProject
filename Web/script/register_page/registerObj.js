@@ -49,6 +49,7 @@ class RegisterUser extends LoginRegistryConstructor {
         if (this.checkError()){
             this.acc_id = this.generateAccId();
             this.acc_number = this.generateAccNumber();
+            console.log(this.acc_number);
             this.password = regUser_Password.value;
             this.name = regUser_Name.value;
             this.surname = regUser_Surname.value;

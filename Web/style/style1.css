@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap');
 
 body {
+    width: 90vw;
+    height: 90vh;
     background-color: #F6F6F6;
     min-width: 388px;
     overflow-x: hidden;
 }
 
 .wrapper {
+    width: 100%;
+    height: 100%;
     font-family: 'Mulish', sans-serif;
     padding: 40px 72px 0 72px;
     max-width: 1440px;
@@ -185,6 +189,8 @@ body {
 
 
 .main {
+    width: 100%;
+    height: 100%;
     display: flex;
     margin-top: 2.75rem;
 }
@@ -201,6 +207,7 @@ body {
     width: 4.125rem;
     height: 4.125rem;
     display: flex;
+    margin-bottom: 1.5rem;
     align-items: center;
     justify-content: center;
 }
@@ -212,7 +219,7 @@ body {
 .main .navbar .navbar-item.active {
     background-color: #6E60DF;
     border-radius: 50%;
-    margin-bottom: 2.5rem;
+    
 }
 
 .main .navbar .navbar-item.active svg > path {
@@ -221,17 +228,22 @@ body {
 
 .main .navbar .navbar-item.active::before {
     position: absolute;
-    top: 1.375rem;
     width: 3.375rem;
     height: 3.375rem;
     content: "";
-    background: rgba(110, 96, 223, 0.75);
+    background: rgba(28, 0, 255, 100);
     filter: blur(37px);
 }
 
 
 .content {
     flex: 1;
+}
+.main-dashboard{
+    display: none;
+}
+.main-dashboard.active{
+    display: block;
 }
 
 .content-wrapper {
@@ -295,6 +307,11 @@ body {
 }
 
 .total-amount h3 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.total-amount h3 span {
     font-size: 2rem;
     font-weight: 700;
 }
@@ -342,9 +359,8 @@ body {
 }
 
 .new-deals-cards_item-info p {
-    color: #828282;
-    font-size: 0.75rem;
-    font-weight: 300;
+    font-size: 0.85rem;
+    font-weight: 700;
 }
 
 .new-deals-cards_item-new {

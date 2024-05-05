@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../style/normalize.css">
     <link rel="stylesheet" href="../style/style1.css">
     <link rel="stylesheet" href="../style/responsive.css">
+    <link rel="stylesheet" href="../style/new_transfer.css">
 </head>
 <body>
     <div class="wrapper">
@@ -58,7 +59,7 @@
         <main class="main">
 
             <nav class="navbar">
-                <div class="navbar-item active">
+                <div class="navbar-item dashboard-page active">
                     <svg width="27" height="25" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.3913 2C18.9436 2 19.3913 1.55228 19.3913 1C19.3913 0.447715 18.9436 0 18.3913 0V2ZM10.7826 11.9524H11.7826V10.9524H10.7826V11.9524ZM18.3913 0H3V2H18.3913V0ZM3 25H24V23H3V25ZM27 22V9.02381H25V22H27ZM0 3V7.02381H2V3H0ZM24 6.02381H1V8.02381H24V6.02381ZM0 7.02381V11.9524H2V7.02381H0ZM1 12.9524H10.7826V10.9524H1V12.9524ZM9.78261 11.9524V15.4286H11.7826V11.9524H9.78261ZM0 11.9524V17.4286H2V11.9524H0ZM0 17.4286V22H2V17.4286H0ZM8.78261 16.4286H1V18.4286H8.78261V16.4286ZM27 9.02381C27 7.36695 25.6569 6.02381 24 6.02381V8.02381C24.5523 8.02381 25 8.47152 25 9.02381H27ZM9.78261 15.4286C9.78261 15.9809 9.33489 16.4286 8.78261 16.4286V18.4286C10.4395 18.4286 11.7826 17.0854 11.7826 15.4286H9.78261ZM24 25C25.6569 25 27 23.6569 27 22H25C25 22.5523 24.5523 23 24 23V25ZM3 23C2.44772 23 2 22.5523 2 22H0C0 23.6569 1.34315 25 3 25V23ZM3 0C1.34315 0 0 1.34314 0 3H2C2 2.44772 2.44772 2 3 2V0Z" fill="white"/>
                     </svg>
@@ -70,18 +71,16 @@
                     </svg>
                 </div>
               </a>
-              <div class="navbar-item">
-                <a href="">
+              <div class="navbar-item make-new-transfer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                       </svg>
-                </a>
               </div>
             </nav>
             <!-- End: navbar area -->
             <!-- Begin: content area -->
-            <div class="content">
+            <div class="content main-dashboard active">
                 <div class="content-wrapper">
                     <div class="content-left">
                         <div class="content-left_headding">
@@ -127,7 +126,6 @@
                             </div>
                             <div class="content-left_main-item">
                                 <div class="dispute-progress-details">
-                                    <button id="newTransfer">Nowy Przelew</button>
                                     <div class="card_heading">
                                         <div class="card_heading-line1">
                                             <h4>Przelej</h4>
@@ -238,7 +236,7 @@
                     <div class="content-right">
                         <div class="content-right_item">
                             <div class="total-amount">
-                                <h3>$ </h3>
+                                <h3>PLN <span></span></h3>
                                 <p>Środa, 24 kwietnia 2024</p>
                             </div>
                             <div class="new-deals-cards">
@@ -246,57 +244,6 @@
                                     Ostatnie transakcje
                                 </div>
                                 <div class="new-deals-cards_list">
-                                    <div class="new-deals-cards_item">
-                                        <div class="new-deals-cards_item-img">
-                                            <img src="./img/c3.png" alt="">
-                                        </div>
-                                        <div class="new-deals-cards_item-info">
-                                            <h3>Oskar Janik</h3>
-                                            <p> 58zl</p>
-                                        </div>
-                                        <div class="new-deals-cards_item-new">
-                                            New
-                                        </div>
-                                        <div class="new-deals-cards_item-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-                                              </svg>
-                                        </div>
-                                    </div>
-                                    <div class="new-deals-cards_item">
-                                        <div class="new-deals-cards_item-img">
-                                            <img src="./img/c2.png" alt="">
-                                        </div>
-                                        <div class="new-deals-cards_item-info">
-                                            <h3>John Doe</h3>
-                                            <p> 500zl</p>
-                                        </div>
-                                        <div class="new-deals-cards_item-new">
-                                            New
-                                        </div>
-                                        <div class="new-deals-cards_item-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-                                              </svg>
-                                        </div>
-                                    </div>
-                                    <div class="new-deals-cards_item">
-                                        <div class="new-deals-cards_item-img">
-                                            <img src="./img/c1.png" alt="">
-                                        </div>
-                                        <div class="new-deals-cards_item-info">
-                                            <h3>Marco Ruiz</h3>
-                                            <p>100zl</p>
-                                        </div>
-                                        <div class="new-deals-cards_item-new">
-                                            New
-                                        </div>
-                                        <div class="new-deals-cards_item-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
-                                                <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
-                                              </svg>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="new-deals-cards_btn">
                                     Zobacz Historie
@@ -349,18 +296,59 @@
                         </div>
                     </div>
                 </div>
-                <footer class="footer">
-    
-                </footer>
             </div>
+            <div class="content new-transfer">
+                <div class="new-transfer-popup-container"> 
+                    <button class="dashboard-transfer-close-btn close-popup">X</button>
+                    <div class="new-transfer-content">
+                        <h1>Nowy przelew</h1>
+                        <div class="form-box">
+                            <label for="transfer-acc-number">Numer konta odbiorcy:</label>
+                            <input id="transfer-acc-number" type="text" minlength="19" maxlength="19" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"  placeholder="Wpisz numer konta">
+                            <p class="error-text">error</p>
+                        </div>
+                        <div class="form-box">
+                            <label for="transfer-title">Tytuł:</label>
+                            <input id="transfer-title" type="text" placeholder="np. Przelew środków">
+                            <p class="error-text">error</p>
+                        </div>
+                        <div class="form-box">
+                            <label for="transfer-amount">Kwota:</label>
+                            <input id="transfer-amount" type="number" step="0.01" placeholder="Wpisz kwotę">
+                            <p class="error-text">error</p>
+                        </div>
+                        <div class="form-box">
+                            <label for="transfer-description">Opis:</label>
+                            <input id="transfer-description" type="text" placeholder="Opis (opcjonalnie)">
+                            <p class="error-text">error</p>
+                        </div>
+                        <div class="form-box">
+                            <label for="transfer-date">Data Przelewu:</label>
+                            <input id="transfer-date" type="date" placeholder="data">
+                            <p class="error-text">error</p>
+                        </div>
+                        <!-- <div class="form-box">
+                            <label for="reg-password-repeat">Powtórz hasło:</label>
+                            <input id="reg-password-repeat" type="password" placeholder="Powtórz Hasło">
+                            <p class="error-text">error</p>
+                        </div> -->
+                        <button id="send-transfer">Wyślij</button>
+                    </div>
+                </div>
+                <!-- <div class="popup-showToast">
+                    <p></p>
+                    <button class="close-Toast">Zamknij</button> -->
+                <!-- </div> -->
+            </div>
+
   
         </main>
 
     </div>
+    <script src="../script/dashboard/elementConstructor.js"></script>
     <script src="../script/bridge/pagesBridge.js"></script>
     <script src="../script/dashboard/dashboardPage.js"></script>
     <!-- <script src="../script/bridge/pagesBridge.js"></script> -->
     <!-- <script src="../script/script.js"></script> -->
-
 </body>
 </html>

@@ -119,6 +119,7 @@ class LoginRegistryConstructor extends MultiPageBridge{
         let acc_number = ""
         for (let i of Array(4).keys()) {
             acc_number = acc_number + String(Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000);
+            console.log(acc_number)
         }
         return acc_number
     }
