@@ -32,7 +32,6 @@ class UsersReader:
             "PESEL": None,
             "ACC_BALANSE": 500,
         }
-        print(self.users_path)
         self.setup_files()
 
 
@@ -43,12 +42,48 @@ class UsersReader:
         else:
             self.create_file()
 
+    def find_id(self, acc_num):
+        for user in self.registry_file["users"]:
+            if acc_num == user["ACC_NUM"]:
+                return {"STATUS": True, "ERROR": None, "DATA": user["ID"]}
+        return {"STATUS": False, "ERROR": "Unabe to find user data!", "DATA": None}
 
-    def find_account(self, acc_num):
-        self.setup_files()
+    def take_user_data(self, id):
+        for user in self.registry_file["users"]:
+            if user["ID"] == id:
+                return {"STATUS": True, "ERROR": None, "DATA": user}
+        return {"STATUS": False, "ERROR": "Unabe to find user data!", "DATA": None}
+            
+
+    def calculate_incoming_balance(self, record, send_money):
+        record["ACC_BALANSE"] = record["ACC_BALANSE"] + send_money
+        for user_data in self.registry_file["users"]:
+            if user_data["ID"] == record["ID"]:
+                try:
+                    with open(self.registry_path, "r+") as f:
+                        f.write(json.dumps(self.registry_file))
+                    return {"STATUS": True, "ERROR": None, "DATA": record["ID"]}
+                except:
+                    return {"STATUS": False, "ERROR": "Unabe to calculate balance!"}
+
+    def calculate_outcoming_balance(self, acc_num, send_money):
         for record in self.registry_file["users"]:
             if record["ACC_NUM"] == acc_num:
-                return {"STATUS": True, "ERROR": None, "DATA": record["ID"]}
+                record["ACC_BALANSE"] = record["ACC_BALANSE"] - send_money
+                try:
+                    with open(self.registry_path, "r+") as f:
+                        f.write(json.dumps(self.registry_file))
+                    return {"STATUS": True, "ERROR": None, "DATA": record["ID"]}
+                except:
+                    return {"STATUS": False, "ERROR": "Unabe to calculate balance!"}
+
+
+    def find_account(self, to_acc_num, from_acc_num, amount):
+        self.setup_files()
+        self.calculate_outcoming_balance(acc_num=from_acc_num, send_money=amount)
+        for record in self.registry_file["users"]:
+            if record["ACC_NUM"] == to_acc_num:
+                return self.calculate_incoming_balance(record=record, send_money=amount)
         return {"STATUS": False, "ERROR": "There is no account", "DATA": None}
 
 
@@ -58,7 +93,7 @@ class UsersReader:
 
 
     def acc_num_separator(self, number):
-        return ' '.join([number[i:i+4] for i in range(0, len(number), 3)])
+        return ' '.join([number[i:i+4] for i in range(0, len(number), 4)])
 
     def save_user_data(self, **kwargs):
         self.registry_struc["ID"] = str(kwargs["acc_id"])

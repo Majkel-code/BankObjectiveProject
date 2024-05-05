@@ -13,7 +13,6 @@ router = APIRouter(
 
 @router.put("/")
 async def receive_data(data: dict = Body(...)):
-    print(data)
     register_authorization = RegistryAuthorization()
     if register_authorization.check_user_exist(pesel=data.get("pesel"))["STATUS"]:
         return register_authorization.register_user(**data)

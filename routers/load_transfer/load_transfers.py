@@ -8,15 +8,19 @@ router = APIRouter(
 )
 
 
-@router.post("/history")
+@router.post("/last_history")
 async def receive_data(data: dict = Body(...)):
-    print(data)
     return TransferReader().check_history(data.get("acc_id"))
 
 
 
 @router.post("/newtransfer")
 async def new_transfer(data: dict = Body(...)):
-    print(data)
     return TransferMaker().save_transfer(**data)
+
+
+
+@router.get("/defoult")
+async def new_transfer():
+    return TransferReader().take_def_transactions()
     
