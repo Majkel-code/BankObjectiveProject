@@ -34,7 +34,6 @@ class UsersReader:
         }
         self.setup_files()
 
-
     def setup_files(self):
         if os.path.exists(self.registry_path):
             with open(self.registry_path, "r") as f:
@@ -53,7 +52,13 @@ class UsersReader:
             if user["ID"] == id:
                 return {"STATUS": True, "ERROR": None, "DATA": user}
         return {"STATUS": False, "ERROR": "Unabe to find user data!", "DATA": None}
-            
+
+    def return_user_amount(self, id):
+        for user in self.registry_file["users"]:
+            if id == user["ID"]:
+                return {"STATUS": True, "ERROR": None, "DATA": user["ACC_BALANSE"]}
+        return {"STATUS": False, "ERROR": "Unabe to find user data!", "DATA": None}
+
 
     def calculate_incoming_balance(self, record, send_money):
         record["ACC_BALANSE"] = record["ACC_BALANSE"] + send_money
@@ -62,11 +67,25 @@ class UsersReader:
                 try:
                     with open(self.registry_path, "r+") as f:
                         f.write(json.dumps(self.registry_file))
-                    return {"STATUS": True, "ERROR": None, "DATA": record["ID"]}
+                    return {
+                        "STATUS": True,
+                        "ERROR": None,
+                        "DATA": {"ID": record["ID"], "RECEIVER": f'{record["NAME"]} {record["L_NAME"]}'}
+                    }
                 except:
                     return {"STATUS": False, "ERROR": "Unabe to calculate balance!"}
 
-    def calculate_outcoming_balance(self, acc_num, send_money):
+    def calculate_outcoming_balance(self, acc_num, send_money, id: int = None):
+        if id is not None:
+            for record in self.registry_file["users"]:
+                if record["ID"] == id:
+                    record["ACC_BALANSE"] = record["ACC_BALANSE"] - send_money
+                    try:
+                        with open(self.registry_path, "r+") as f:
+                            f.write(json.dumps(self.registry_file))
+                        return {"STATUS": True, "ERROR": None, "DATA": record["ID"]}
+                    except:
+                        return {"STATUS": False, "ERROR": "Unabe to calculate balance!"}
         for record in self.registry_file["users"]:
             if record["ACC_NUM"] == acc_num:
                 record["ACC_BALANSE"] = record["ACC_BALANSE"] - send_money
@@ -77,23 +96,24 @@ class UsersReader:
                 except:
                     return {"STATUS": False, "ERROR": "Unabe to calculate balance!"}
 
-
-    def find_account(self, to_acc_num, from_acc_num, amount):
+    def find_account(self, to_acc_num, from_acc_num, amount, id: int = None):
         self.setup_files()
+        if id is not None:
+            for record in self.registry_file["users"]:
+                if record["ID"] == id:
+                    return self.calculate_incoming_balance(record=record, send_money=amount)
         self.calculate_outcoming_balance(acc_num=from_acc_num, send_money=amount)
         for record in self.registry_file["users"]:
             if record["ACC_NUM"] == to_acc_num:
                 return self.calculate_incoming_balance(record=record, send_money=amount)
         return {"STATUS": False, "ERROR": "There is no account", "DATA": None}
 
-
     def create_file(self):
         with open(self.registry_path, "a") as f:
-                f.write(json.dumps(self.def_user))
-
+            f.write(json.dumps(self.def_user))
 
     def acc_num_separator(self, number):
-        return ' '.join([number[i:i+4] for i in range(0, len(number), 4)])
+        return " ".join([number[i : i + 4] for i in range(0, len(number), 4)])
 
     def save_user_data(self, **kwargs):
         self.registry_struc["ID"] = str(kwargs["acc_id"])
@@ -104,7 +124,6 @@ class UsersReader:
         self.registry_struc["E_MAIL"] = kwargs["email"]
         self.registry_struc["PESEL"] = kwargs["pesel"]
 
-
         try:
             with open(self.registry_path, "r+") as f:
                 self.registry_file["users"].append(self.registry_struc)
@@ -112,4 +131,3 @@ class UsersReader:
             return {"STATUS": True, "ERROR": None}
         except:
             return {"STATUS": False, "ERROR": "Unabe to register user!"}
- 

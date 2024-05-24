@@ -8,8 +8,10 @@
     <link rel="icon" href="./img/Favicons/browser.png" type="image/x-icon">
     <link rel="stylesheet" href="../style/normalize.css">
     <link rel="stylesheet" href="../style/style1.css">
+    <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/responsive.css">
     <link rel="stylesheet" href="../style/new_transfer.css">
+    <link rel="stylesheet" href="../style/style_credit.css">
 </head>
 <body>
     <div class="wrapper">
@@ -64,8 +66,8 @@
                         <path d="M18.3913 2C18.9436 2 19.3913 1.55228 19.3913 1C19.3913 0.447715 18.9436 0 18.3913 0V2ZM10.7826 11.9524H11.7826V10.9524H10.7826V11.9524ZM18.3913 0H3V2H18.3913V0ZM3 25H24V23H3V25ZM27 22V9.02381H25V22H27ZM0 3V7.02381H2V3H0ZM24 6.02381H1V8.02381H24V6.02381ZM0 7.02381V11.9524H2V7.02381H0ZM1 12.9524H10.7826V10.9524H1V12.9524ZM9.78261 11.9524V15.4286H11.7826V11.9524H9.78261ZM0 11.9524V17.4286H2V11.9524H0ZM0 17.4286V22H2V17.4286H0ZM8.78261 16.4286H1V18.4286H8.78261V16.4286ZM27 9.02381C27 7.36695 25.6569 6.02381 24 6.02381V8.02381C24.5523 8.02381 25 8.47152 25 9.02381H27ZM9.78261 15.4286C9.78261 15.9809 9.33489 16.4286 8.78261 16.4286V18.4286C10.4395 18.4286 11.7826 17.0854 11.7826 15.4286H9.78261ZM24 25C25.6569 25 27 23.6569 27 22H25C25 22.5523 24.5523 23 24 23V25ZM3 23C2.44772 23 2 22.5523 2 22H0C0 23.6569 1.34315 25 3 25V23ZM3 0C1.34315 0 0 1.34314 0 3H2C2 2.44772 2.44772 2 3 2V0Z" fill="white"/>
                     </svg>
                 </div>
-                <div class="navbar-item ">
-                  <a href="card.html">
+                <div class="navbar-item card-mamagment">
+                  <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
                       <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1"/>
                     </svg>
@@ -78,6 +80,17 @@
                       </svg>
               </div>
             </nav>
+            <div class="content popup-card-managment">
+                <div class="popup-card-managment-content">
+                    <button class="dashboard-cards-close-btn close-popup">X</button>
+                    <h1>Moje karty <span><img src='https://res.cloudinary.com/dzavwgc6d/image/upload/v1463341053/Add_r2mtem.png' class='addDiv'></span></h1>
+                    <div class="credit-card">
+                        <img src='https://res.cloudinary.com/dzavwgc6d/image/upload/v1463341474/Visa_udke8r.png'>
+                        <h2>**** **** **** 2562</h2>
+                        <p>Valid Thru: 12/26</p>
+                    </div>
+                </div>
+            </div>
             <!-- End: navbar area -->
             <!-- Begin: content area -->
             <div class="content main-dashboard active">
@@ -124,39 +137,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="content-left_main-item">
-                                <div class="dispute-progress-details">
-                                    <div class="card_heading">
-                                        <div class="card_heading-line1">
-                                            <h4>Przelej</h4>
-                                            <span>
-                                                <svg width="22" height="5" viewBox="0 0 22 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <rect width="5.2" height="5" rx="1" fill="#4F4F4F"/>
-                                                    <rect x="8.39999" width="5.2" height="5" rx="1" fill="#4F4F4F"/>
-                                                    <rect x="16.8" width="5.2" height="5" rx="1" fill="#4F4F4F"/>
-                                                </svg>                                                    
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="dispute-progress-details_main">
-                                        <div class="dispute-progress-details_main-chart">
-                                            <!-- Chart here -->
-                                            <canvas id="digital-chart"></canvas>
-                                        </div>
-                                        <div class="dispute-progress-details_main-btn">
-                                            <div class="dispute-progress-details_main-btn_item">
-                                                <div class="btn btn-danger">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C14.2091 22 16 20.2091 16 18C16 15.7909 14.2091 14 12 14C9.79086 14 8 15.7909 8 18C8 20.2091 9.79086 22 12 22ZM22 12C22 15.4784 20.224 18.5421 17.5293 20.3336C17.8324 19.6163 18 18.8277 18 18C18 15.4354 16.3909 13.2466 14.1273 12.388C15.2523 11.6802 16 10.4274 16 9C16 6.79086 14.2091 5 12 5C9.79086 5 8 6.79086 8 9C8 10.4274 8.74765 11.6802 9.87271 12.388C7.60905 13.2466 6 15.4354 6 18C6 18.8277 6.1676 19.6163 6.47071 20.3336C3.77601 18.5421 2 15.4784 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24ZM12 11C13.1046 11 14 10.1046 14 9C14 7.89543 13.1046 7 12 7C10.8954 7 10 7.89543 10 9C10 10.1046 10.8954 11 12 11Z" fill="#DAA27D"/>
-                                                    </svg>                                                        
-                                                </div>
-                                                <h4>Zadowolonych użytkowników</h4>
-                                                <p>+2000</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="content-left_main-item">
                                 <div class="credit-details">
                                     <div class="credit-details_heading">
@@ -239,6 +220,13 @@
                                 <h3>PLN <span></span></h3>
                                 <p>Środa, 24 kwietnia 2024</p>
                             </div>
+                            <div class="total-amount credit-amount">
+                                <p>Your Credit</p>
+                                <h3>PLN <span>0.00</span></h3>
+                                <p>Monthly</p>
+                                <h4>PLN <span>0.00</span></h4>
+                                <p></p>
+                            </div>
                             <div class="new-deals-cards">
                                 <div class="new-deals-cards_heading">
                                     Ostatnie transakcje
@@ -246,21 +234,59 @@
                                 <div class="new-deals-cards_list">
                                 </div>
                                 <div class="new-deals-cards_btn">
-                                    Zobacz Historie
+                                    <a href="#" onclick="openPopup()">Zobacz Historie</a>
                                 </div>
                             </div>
                         </div>
+                        <script>
+                            function openPopup() {
+                                document.getElementById("popup").style.display = "block";
+                            }
+                            
+                            function closePopup() {
+                                document.getElementById("popup").style.display = "none";
+                            }
+                            </script>
+                            <div id="popup" class="popup">
+                                <div class="popup-content">
+                                    <button class="close-button" onclick="closePopup()">X</button>
+                                    <details>
+                                        <summary> Beneficjent: Jan Kowalski</summary>
+                                        <p><span class="green-amount"> + 500 PLN</span> | Data: 01.01.2024 | Tytuł: </p>
+                                    </details>
+                                    <details>
+                                        <summary>Beneficjent: Anna Nowak</summary>
+                                        <p><span class="red-amount"> - 300 PLN</span> | Data: 02.01.2024 | Tytuł: </p>
+                                    </details>
+                                    <details>
+                                        <summary> Beneficjent: Jan Kowalski</summary>
+                                        <p><span class="green-amount"> + 500 PLN</span> | Data: 01.01.2024 | Tytuł: </p>
+                                    </details>
+                                    <details>
+                                        <summary>Beneficjent: Anna Nowak</summary>
+                                        <p><span class="red-amount"> - 300 PLN</span> | Data: 02.01.2024 | Tytuł: </p>
+                                    </details>                                    <details>
+                                        <summary> Beneficjent: Jan Kowalski</summary>
+                                        <p><span class="green-amount"> + 500 PLN</span> | Data: 01.01.2024 | Tytuł: </p>
+                                    </details>
+                                    <details>
+                                        <summary>Beneficjent: Anna Nowak</summary>
+                                        <p><span class="red-amount"> - 300 PLN</span> | Data: 02.01.2024 | Tytuł: </p>
+                                    </details>
+                                </div>
+                            </div>
+
                         <div class="content-right_item">
                             <div class="loan-calculator">
                                 <div class="card_heading">
                                     <div class="card_heading-line1">
                                         <h4>Kalkulator pożyczek</h4>
                                         <span>
-                                            <svg width="22" height="5" viewBox="0 0 22 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                           <a href="#" class="open-credit-popup"> <svg width="22" height="5" viewBox="0 0 22 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="5.2" height="5" rx="1" fill="#4F4F4F"/>
                                                 <rect x="8.39999" width="5.2" height="5" rx="1" fill="#4F4F4F"/>
                                                 <rect x="16.8" width="5.2" height="5" rx="1" fill="#4F4F4F"/>
-                                            </svg>                                                    
+                                            </svg> </a>                                                    
                                         </span>
                                     </div>
                                     <div class="card_heading-line2">
@@ -297,6 +323,63 @@
                     </div>
                 </div>
             </div>
+            <div class="content credit-popup">
+                <div class="credit-popup-container">
+                    <button class="dashboard-credit-close-btn close-popup">X</button>
+                    <div class="credit-content">
+                        <h1>Wnioskodawca</h1>
+                        <div class="form-box">
+                            <label for="">Imie Nazwisko</label>
+                            <p>Jan Kowalski</p>
+                        </div>
+                        <div class="form-box">
+                            <label for="">PESEL</label>
+                            <p>99999999999</p>
+                        </div>
+                        <div class="slidecontainer-amount">
+                            <input type="range" min="0" max="5000" step="100" value="0" class="slider" id="input-amountRange"/>
+                            <p>Kwota: <span id="span-amountValue">0</span>zl</p>
+                        </div>
+                        <div class="slidecontainer-month">
+                            <p>Miesiące: <span id="span-monthValue">0</span></p>
+                            <input type="range" min="0" max="36" step="1" value="0" class="slider" id="input-monthRange">
+                        </div>
+                        <div class="form-box">
+                            <label for="">RRSO</label>
+                            <p>--</p>
+                        </div>
+                        <div class="form-box">
+                            <label for="">Odsetki</label>
+                            <p>--</p>
+                        </div>
+                        <div class="form-box">
+                            <label for="">Kwota do spłaty</label>
+                            <p>--</p>
+                        </div>
+                        <div class="form-box">
+                            <label for="">Rata</label>
+                            <p>--</p>
+                        </div>
+                        <button id="take-credit-btn">Wyślij wniosek</button>
+                    </div>
+                    
+                </div>
+            </div>
+            <script>
+                // const sliderMonth = document.getElementById("input-monthRange");
+                // const outputMonth = document.getElementById("span-monthValue");
+                // const sliderAmonunt = document.getElementById("input-amountRange");
+                // const outputAmount = document.getElementById("span-amountValue");
+            
+                // sliderMonth.oninput = function() {
+                //     outputMonth.innerHTML = this.value;
+                // }
+                // outputMonth.innerHTML = sliderMonth.value; 
+                // sliderAmonunt.oninput = function() {
+                //     outputAmount.innerHTML = this.value;
+                // }
+                // outputAmount.innerHTML = sliderAmonunt.value; 
+            </script>
             <div class="content new-transfer">
                 <div class="new-transfer-popup-container"> 
                     <button class="dashboard-transfer-close-btn close-popup">X</button>
@@ -315,6 +398,24 @@
                         <div class="form-box">
                             <label for="transfer-amount">Kwota:</label>
                             <input id="transfer-amount" type="number" step="0.01" placeholder="Wpisz kwotę">
+                            <p class="error-text">error</p>
+                        </div>
+                        <!-- <div class="form-box person-container">
+
+                            <div class="form-box transfer-name">
+                                <label for="transfer-name">Imie:</label>
+                                <input id="transfer-name" type="text" placeholder="np. Jan (opcjonalnie)">
+                                <p class="error-text">error</p>
+                            </div>
+                            <div class="form-box transfer-surname">
+                                <label for="transfer-surname">Nazwisko:</label>
+                                <input id="transfer-surname" type="text" placeholder="np. Kowalski (opcjonalnie)">
+                                <p class="error-text">error</p>
+                            </div>
+                        </div> -->
+                        <div class="form-box transfer-company">
+                            <label for="transfer-company">Nazwa firmy:</label>
+                            <input id="transfer-company-name" type="text" placeholder="np. CoronaBank S.A. (opcjonalnie)">
                             <p class="error-text">error</p>
                         </div>
                         <div class="form-box">
@@ -350,5 +451,6 @@
     <script src="../script/dashboard/dashboardPage.js"></script>
     <!-- <script src="../script/bridge/pagesBridge.js"></script> -->
     <!-- <script src="../script/script.js"></script> -->
+    <!-- <script src="../script/add.js"></script> -->
 </body>
 </html>

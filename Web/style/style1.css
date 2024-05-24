@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap');
 
 body {
-    width: 90vw;
-    height: 90vh;
+    /* width: 90vw;
+    height: 90vh; */
     background-color: #F6F6F6;
     min-width: 388px;
     overflow-x: hidden;
@@ -322,6 +322,18 @@ body {
     margin-top: 0.1rem;
 }
 
+.total-amount.credit-amount h3 {
+    font-size: 0.7rem;
+}
+.total-amount.credit-amount h3 span {
+    font-size: 1.4rem;
+}
+.total-amount.credit-amount h4 {
+    font-size: 0.6rem;
+}
+.total-amount.credit-amount h4 span {
+    font-size: 1.2rem;
+}
 
 .new-deals-cards_heading {
     font-size: 0.8rem;
@@ -798,4 +810,227 @@ body {
 
 .footer {
     padding-top: 2rem;
+}
+
+button {
+    width: 200px;
+    padding: 10px;
+    background-color: #ccc;
+    margin: 20px 0;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.popup {
+    display: none; /* ukrywamy domyślnie */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+.popup-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 30px;
+    width: 50%;
+    height: 50%; /* Ustawiamy wysokość, aby treść mogła przekroczyć tę wartość */
+    overflow-y: auto; /* Dodajemy scroll tylko jeśli treść przekroczy wysokość */
+}
+.close-button {
+    border: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #000;
+    cursor: pointer;
+    width: 5%;
+}
+details {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #e4eaef;
+    border-radius: 5px;
+}
+details[open] {
+    background-color: #e4e4e4;
+}
+summary {
+    font-weight: bold;
+    cursor: pointer;
+}
+summary::-webkit-details-marker {
+    display: none;
+}
+details[open] summary {
+    color: black;
+}
+details[open] summary {
+    color: black
+}
+.green-amount {
+    color: green;
+    font-weight: bold;
+}
+.red-amount {
+    color: red;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: black
+}
+.popup-card-managment{
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.popup-card-managment.active{
+ display: block;
+}
+.popup-card-managment-content{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 60px;
+    background: white;
+    border: 3px #ccc solid;
+    box-shadow: 0px 0px 24px 0px rgba(46, 46, 47, 1);
+    border-radius: 10px;
+    margin: auto;
+    font-size: 24px;
+    font-weight: bold;
+}
+.dashboard-cards-close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    margin: 0;
+    width: 50px;
+    height: 50px;
+}
+.credit-card {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.credit-card img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: 10px;
+}
+.credit-card h2 {
+    margin: 0;
+}
+/* .popup2 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+} */
+
+/* .credit-popup{
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.credit-popup.active{
+    display: block;
+}
+.credit-popup-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 60px;
+    background: white;
+    border: 3px #ccc solid;
+    box-shadow: 0px 0px 24px 0px rgba(46, 46, 47, 1);
+    border-radius: 10px;
+    margin: auto;
+    font-size: 24px;
+    font-weight: bold;
+}
+.dashboard-credit-close-btn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    margin: 0;
+    width: 50px;
+    height: 50px;
+}
+.credit-content{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+.credit-content div{
+    width: 100%;
+    margin-bottom: 15px;
+}
+.credit-content div p {
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #ccc;
+    border-radius: 10px;
+    border: none;
+    color: black;
+    font-size: 20px;
+} */
+
+.popup-content2 h1 {
+    text-align: center;
+}
+
+.wniosek {
+    width: 100%;
+    align-items: center;
+    margin: auto;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #ccc;
+    border-radius: 10px;
+    border: none;
+    color: black;
+    font-size: 20px;
+}
+
+
+.slidecontainer {
+    width: 100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+    background: #ccc;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
 }

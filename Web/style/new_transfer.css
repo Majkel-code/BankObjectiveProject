@@ -62,7 +62,14 @@
 	width: 100%;
     margin-bottom: 15px;
 }
-
+.new-transfer-content .form-box.person-container{
+    display: flex;
+    justify-content: space-between;
+}
+.new-transfer-content .form-box.person-container .transfer-name,
+.new-transfer-content .form-box.person-container .transfer-surname{
+    width: 45%;
+}
 .form-box .error-text {
 	margin: 5px 0 0 10px;
 	font-size: 14px;

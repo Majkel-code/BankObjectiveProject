@@ -1,10 +1,5 @@
 from fastapi import APIRouter, Body
 from users.user_authorization.authorize_registry.auth_registry import RegistryAuthorization
-# from pydantic import BaseModel
-
-# class Structure(BaseModel):
-#     data1: str
-#     # data2: str | int | float
 
 router = APIRouter(
     prefix="/register",
