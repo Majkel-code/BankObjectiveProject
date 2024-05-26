@@ -129,7 +129,7 @@ class DashboardPage extends MultiPageBridge {
     loadAmountBalance(){
         let balance_num = totalAmount.children[0].querySelector("span");
         console.log(balance_num)
-        balance_num.textContent = this.loggedUserData["ACC_BALANSE"]
+        balance_num.textContent = this.loggedUserData["ACC_BALANSE"].toFixed(2)
     }
 
 
@@ -320,12 +320,13 @@ class DashboardPage extends MultiPageBridge {
 }
 
 class DashboardInputOperator{
-    constructor(user_amount){
-        this.loggedUserData = user_amount
-        console.log(user_amount)
-        console.log(this.loggedUserData)
+    constructor(DashboardPage){
+        this.DashboardPage = DashboardPage
+        console.log("IN INPUT OPERATOR")
+        console.log(DashboardPage)
+        console.log(this.DashboardPage.loggedUserData["ACC_BALANSE"])
         this.AccountNumberChecker();
-        this.AvailableAmount(this.loggedUserData);
+        this.AvailableAmount();
         this.CurrentDate();
     }
 
@@ -340,18 +341,18 @@ class DashboardInputOperator{
         });
     }
 
-    AvailableAmount(user_amount){
-        let input_amount 
-        TransferAmount.addEventListener("input", function(e){
-            input_amount = Number(this.value);
+    AvailableAmount(){
+        let input_amount
+        TransferAmount.addEventListener("input", ()=>{
+            input_amount = Number(TransferAmount.value);
             console.log(input_amount)
-            console.log(user_amount["ACC_BALANSE"])
-            if (input_amount > user_amount["ACC_BALANSE"]){
-                this.value = user_amount["ACC_BALANSE"]
+            console.log(this.DashboardPage.loggedUserData["ACC_BALANSE"])
+            if (input_amount > this.DashboardPage.loggedUserData["ACC_BALANSE"]){
+                TransferAmount.value = this.DashboardPage.loggedUserData["ACC_BALANSE"]
 
             }
             else if (/\d+\.\d+/.test(input_amount)){
-                this.value = input_amount.toFixed(2);
+                TransferAmount.value = input_amount.toFixed(2);
             }
         })
     }
@@ -403,7 +404,7 @@ class DashboardInputOperator{
             this.showError(input, `wartość '${inputError}' powinna składać się z min. ${min} znaków.`);
             return false;
         }
-        if (input.value == this.loggedUserData["ACC_NUM"]){
+        if (input.value == this.DashboardPage.loggedUserData["ACC_NUM"]){
             this.showError(input, `Nieprawidłowy numer konta`);
             return false;
         }
@@ -442,17 +443,14 @@ class DashboardCreator extends HTMLconstructor {
         } else{
             console.log("ERROR")
         }
-        this.DashboardInputOperator = new DashboardInputOperator(this.DashboardPage.loggedUserData)
+        this.DashboardInputOperator = new DashboardInputOperator(this.DashboardPage)
 
 
-    }
-    startDashboardOperator(){
-        this.DashboardInputOperator = new DashboardInputOperator(this.DashboardPage.loggedUserData)
     }
 
     async refreshLocalStorages(){
         await this.DashboardPage.userRefreshLogin();
-        this.startDashboardOperator()
+        // this.startDashboardOperator()
     }
 
     async loadAmount(){
@@ -478,8 +476,6 @@ class DashboardCreator extends HTMLconstructor {
     async defoult_transactions(iterations){
         for (let j of Array(iterations).keys()){
             const def_transactions = await this.DashboardPage.takeDefoult_transactions();
-            // console.log(def_transactions)
-            // console.log(def_transactions["DATA"]["transfers"][j])
             let create_element = this.createNewDealsCard(
                 `${def_transactions["DATA"]["transfers"][j]["NAME"]} ${def_transactions["DATA"]["transfers"][j]["L_NAME"]}`,
                 `${def_transactions["DATA"]["transfers"][j]["AMOUNT"]}`)
@@ -611,7 +607,7 @@ class DashboardCreator extends HTMLconstructor {
         }
     }
 
-    CreditForm(CreditPopup){
+    async CreditForm(CreditPopup){
         const creditEvery_p = CreditPopup.querySelectorAll(".form-box>p")
         // const resultAmountElement = creditEvery_p[4].textContent;
         // const resultAmountNumber = Number(resultAmountElement.split("zl")[0]);
@@ -621,8 +617,14 @@ class DashboardCreator extends HTMLconstructor {
         let AmountValue = Number(AmountValueElement.textContent);
         // console.log(resultAmountNumber);
         if (AmountValue > 0 && MonthValue > 0){
-            this.DashboardPage.SendCreditForm(AmountValue, MonthValue);
-
+            let credit_response = await this.DashboardPage.SendCreditForm(AmountValue, MonthValue);
+            if (credit_response["STATUS"]){
+                await this.refreshLocalStorages()
+                console.log(credit_response)
+                this.DashboardPage.loggedUserData["ACC_BALANSE"] = credit_response["DATA"];
+                this.closePopups();
+                await this.loadAmount();
+            }
         }
     }
 
