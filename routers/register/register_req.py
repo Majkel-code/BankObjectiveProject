@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Body
+
 from users.user_authorization.authorize_registry.auth_registry import RegistryAuthorization
 
 router = APIRouter(
@@ -13,4 +14,3 @@ async def receive_data(data: dict = Body(...)):
         return register_authorization.register_user(**data)
     else:
         return {"STATUS": False, "ERROR": "Taki urzytkownik istnieje!"}
-    

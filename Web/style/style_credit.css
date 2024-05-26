@@ -1,49 +1,49 @@
-.credit-popup{
-    width: 100%;
-    height: 100%;
-    display: none;
+.credit-popup {
+  width: 100%;
+  height: 100%;
+  display: none;
 }
-.credit-popup.active{
-    display: block;
+.credit-popup.active {
+  display: block;
 }
 .credit-popup-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 60px;
-    background: white;
-    border: 3px #ccc solid;
-    box-shadow: 0px 0px 24px 0px rgba(46, 46, 47, 1);
-    border-radius: 10px;
-    margin: auto;
-    font-size: 24px;
-    font-weight: bold;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 60px;
+  background: white;
+  border: 3px #ccc solid;
+  box-shadow: 0px 0px 24px 0px rgba(46, 46, 47, 1);
+  border-radius: 10px;
+  margin: auto;
+  font-size: 24px;
+  font-weight: bold;
 }
-.dashboard-credit-close-btn{
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    margin: 0;
-    width: 50px;
-    height: 50px;
+.dashboard-credit-close-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  margin: 0;
+  width: 50px;
+  height: 50px;
 }
-.credit-content{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-    align-items: center;
+.credit-content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
 }
-.credit-content div{
-    width: 100%;
-    margin-bottom: 15px;
+.credit-content div {
+  width: 100%;
+  margin-bottom: 15px;
 }
 .credit-content div p {
-    padding: 15px;
-    margin: 10px 0;
-    background-color: #ccc;
-    border-radius: 10px;
-    border: none;
-    color: black;
-    font-size: 20px;
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #ccc;
+  border-radius: 10px;
+  border: none;
+  color: black;
+  font-size: 20px;
 }

@@ -1,46 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="../style/style.css">
-    <link rel="icon" href="img/Favicons/browser.png" type="image/x-icon">
-</head>
-<body>
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="icon" href="img/Favicons/browser.png" type="image/x-icon" />
+  </head>
+  <body>
     <header>
-        <div class="logo">
-            <img src="img/png/Black logo - no background.png">
-        </div>
+      <div class="logo">
+        <img src="img/png/Black logo - no background.png" />
+      </div>
     </header>
     <nav>
-        <div class="navi">
-            <a href="help.html">Pomoc i Kontakt</a>
-            <a href="main.html">Home</a>
-            <a id="acc" href="openacc.html">Otwórz konto</a>
-        </div>
-        <hr>
+      <div class="navi">
+        <a href="help.html">Pomoc i Kontakt</a>
+        <a href="main.html">Home</a>
+        <a id="acc" href="openacc.html">Otwórz konto</a>
+      </div>
+      <hr />
     </nav>
     <main class="login1">
-        <div class="login">
-            <h1>Zaloguj</h1>
-            <div class="login-inputs">
-                <input id="login-user-number" type="text" placeholder="Numer Klienta" value="99999">
-                <input id="login-password" type="password" placeholder="Password" value="testpassword">
+      <div class="login">
+        <h1>Zaloguj</h1>
+        <div class="login-inputs">
+          <input
+            id="login-user-number"
+            type="text"
+            placeholder="Numer Klienta"
+            value="99999"
+          />
+          <input
+            id="login-password"
+            type="password"
+            placeholder="Password"
+            value="testpassword"
+          />
+        </div>
+        <p class="error-msg">!</p>
+        <button id="btn1">Zaloguj</button>
+        <main>
+          <footer>
+            <div class="left-foot">
+              © 2024 Kamil Kulej. Wszystkie prawa zastrzeżone.
             </div>
-            <p class="error-msg">!</p>
-            <button id="btn1">Zaloguj</button>
+            <div class="right-foot">
+              <a href="https://facebook.com" target="_blank"
+                ><img src="img/png/icon5.svg" alt="Facebook"
+              /></a>
+              <a href="https://twitter.com" target="_blank"
+                ><img src="img/png/icon6.svg" alt="Twitter"
+              /></a>
+              <a href="https://github.com" target="_blank"
+                ><img src="img/png/icon7.svg" alt="Instagram"
+              /></a>
+            </div>
+          </footer>
+          <script src="../script/login_page/loginObj.js"></script>
+          <body>
+            <html></html>
+          </body>
+        </main>
+      </div>
     </main>
-    <footer>
-        <div class="left-foot">
-            © 2024 Kamil Kulej. Wszystkie prawa zastrzeżone.
-        </div>
-        <div class="right-foot">
-            <a href="https://facebook.com" target="_blank"><img src="img/png/icon5.svg" alt="Facebook"></a>
-            <a href="https://twitter.com" target="_blank"><img src="img/png/icon6.svg" alt="Twitter"></a>
-            <a href="https://github.com" target="_blank"><img src="img/png/icon7.svg" alt="Instagram"></a>
-        </div>
-    </footer>
-    <script src="../script/login_page/loginObj.js"></script>
-</body>
+  </body>
 </html>

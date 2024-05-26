@@ -1,98 +1,94 @@
-
-.new-transfer{
-    width: 100%;
-    height: 100%;
-    display: none;
+.new-transfer {
+  width: 100%;
+  height: 100%;
+  display: none;
 }
-.new-transfer.active{
-    display: block;
+.new-transfer.active {
+  display: block;
 }
-.new-transfer-popup-container{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 60px;
-    background: white;
-    border: 3px #ccc solid;
-    box-shadow: 0px 0px 24px 0px rgba(46, 46, 47, 1);
-    border-radius: 10px;
-    margin: auto;
-    font-size: 24px;
-    font-weight: bold;
-
+.new-transfer-popup-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 60px;
+  background: white;
+  border: 3px #ccc solid;
+  box-shadow: 0px 0px 24px 0px rgba(46, 46, 47, 1);
+  border-radius: 10px;
+  margin: auto;
+  font-size: 24px;
+  font-weight: bold;
 }
-.new-transfer-content{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-    align-items: center;
+.new-transfer-content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
 }
 
-.dashboard-transfer-close-btn{
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    margin: 0;
-    width: 50px;
-    height: 50px;
-
+.dashboard-transfer-close-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  margin: 0;
+  width: 50px;
+  height: 50px;
 }
 .new-transfer-content input {
-    width: 100%;
-    align-items: center;
-    margin: auto;
-    padding: 15px;
-    margin: 10px 0;
-    background-color: #ccc;
-    border-radius: 10px;
-    border: none;
-    color: black;
-    font-size: 20px;
+  width: 100%;
+  align-items: center;
+  margin: auto;
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #ccc;
+  border-radius: 10px;
+  border: none;
+  color: black;
+  font-size: 20px;
 }
 
-.new-transfer-content>.error-msg{
-    color: red;
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    visibility: hidden;
+.new-transfer-content > .error-msg {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  visibility: hidden;
 }
 .new-transfer-content .form-box {
-	width: 100%;
-    margin-bottom: 15px;
+  width: 100%;
+  margin-bottom: 15px;
 }
-.new-transfer-content .form-box.person-container{
-    display: flex;
-    justify-content: space-between;
+.new-transfer-content .form-box.person-container {
+  display: flex;
+  justify-content: space-between;
 }
 .new-transfer-content .form-box.person-container .transfer-name,
-.new-transfer-content .form-box.person-container .transfer-surname{
-    width: 45%;
+.new-transfer-content .form-box.person-container .transfer-surname {
+  width: 45%;
 }
 .form-box .error-text {
-	margin: 5px 0 0 10px;
-	font-size: 14px;
-	color: rgb(0, 137, 250);
-	visibility: hidden;
+  margin: 5px 0 0 10px;
+  font-size: 14px;
+  color: rgb(0, 137, 250);
+  visibility: hidden;
 }
-.form-box.error .error-text{
-	visibility: visible;
+.form-box.error .error-text {
+  visibility: visible;
 }
 
-
-#send-transfer{
-    width: 200px;
-    padding: 10px;
-    background-color: #ccc;
-    margin: 20px 0;
-    color: black;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 24px;
-    font-weight: bold;
+#send-transfer {
+  width: 200px;
+  padding: 10px;
+  background-color: #ccc;
+  margin: 20px 0;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
 }
 #send-transfer:hover {
-    background-color: grey;
+  background-color: grey;
 }

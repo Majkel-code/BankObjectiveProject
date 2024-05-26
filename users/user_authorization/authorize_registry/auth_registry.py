@@ -1,6 +1,5 @@
-import json
-import os
 from users.user_authorization.user_reader import UsersReader
+
 
 class RegistryAuthorization(UsersReader):
     def __init__(self) -> None:
@@ -11,7 +10,6 @@ class RegistryAuthorization(UsersReader):
             if record["PESEL"] == pesel:
                 return {"STATUS": False, "ERROR": "Urzytkownik o takich danych juz istnieje!"}
         return {"STATUS": True, "ERROR": None}
-            
 
     def register_user(self, **kwargs):
         return self.save_user_data(**kwargs)

@@ -1,11 +1,13 @@
 from fastapi import APIRouter, Body
+
+from configs.config_returner import ConfigReturner
 from users.credits.credit_maker import CreditMaker
 from users.credits.credit_reader import CreditReader
-from configs.config_returner import ConfigReturner
 
 router = APIRouter(
     prefix="/credit",
 )
+
 
 @router.get("/costs")
 async def send_data():

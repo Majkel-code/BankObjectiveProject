@@ -59,7 +59,6 @@ class UsersReader:
                 return {"STATUS": True, "ERROR": None, "DATA": user["ACC_BALANSE"]}
         return {"STATUS": False, "ERROR": "Unabe to find user data!", "DATA": None}
 
-
     def calculate_incoming_balance(self, record, send_money):
         record["ACC_BALANSE"] = record["ACC_BALANSE"] + send_money
         for user_data in self.registry_file["users"]:
@@ -70,10 +69,13 @@ class UsersReader:
                     return {
                         "STATUS": True,
                         "ERROR": None,
-                        "DATA": {"ID": record["ID"], "RECEIVER": f'{record["NAME"]} {record["L_NAME"]}'}
+                        "DATA": {
+                            "ID": record["ID"],
+                            "RECEIVER": f'{record["NAME"]} {record["L_NAME"]}',
+                        },
                     }
-                except:
-                    return {"STATUS": False, "ERROR": "Unabe to calculate balance!"}
+                except Exception as e:
+                    return {"STATUS": False, "ERROR": "Unabe to calculate balance!", "DATA": e}
 
     def calculate_outcoming_balance(self, acc_num, send_money, id: int = None):
         if id is not None:
@@ -84,8 +86,8 @@ class UsersReader:
                         with open(self.registry_path, "r+") as f:
                             f.write(json.dumps(self.registry_file))
                         return {"STATUS": True, "ERROR": None, "DATA": record["ID"]}
-                    except:
-                        return {"STATUS": False, "ERROR": "Unabe to calculate balance!"}
+                    except Exception as e:
+                        return {"STATUS": False, "ERROR": "Unabe to calculate balance!", "DATA": e}
         for record in self.registry_file["users"]:
             if record["ACC_NUM"] == acc_num:
                 record["ACC_BALANSE"] = record["ACC_BALANSE"] - send_money
@@ -93,8 +95,8 @@ class UsersReader:
                     with open(self.registry_path, "r+") as f:
                         f.write(json.dumps(self.registry_file))
                     return {"STATUS": True, "ERROR": None, "DATA": record["ID"]}
-                except:
-                    return {"STATUS": False, "ERROR": "Unabe to calculate balance!"}
+                except Exception as e:
+                    return {"STATUS": False, "ERROR": "Unabe to calculate balance!", "DATA": e}
 
     def find_account(self, to_acc_num, from_acc_num, amount, id: int = None):
         self.setup_files()
@@ -129,5 +131,5 @@ class UsersReader:
                 self.registry_file["users"].append(self.registry_struc)
                 f.write(json.dumps(self.registry_file))
             return {"STATUS": True, "ERROR": None, "DATA": self.registry_struc["ID"]}
-        except:
-            return {"STATUS": False, "ERROR": "Unabe to register user!"}
+        except Exception as e:
+            return {"STATUS": False, "ERROR": "Unabe to register user!", "DATA": e}

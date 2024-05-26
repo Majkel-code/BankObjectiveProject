@@ -1,6 +1,5 @@
-import json
-import os
 from users.user_authorization.user_reader import UsersReader
+
 
 class LoginAuthorization(UsersReader):
     def __init__(self) -> None:
@@ -11,5 +10,3 @@ class LoginAuthorization(UsersReader):
             if record["ID"] == login_id and record["PASSWORD"] == password:
                 return {"STATUS": True, "ERROR": None, "DATA": record}
         return {"STATUS": False, "ERROR": "INCORRECT DATA"}
-            
-    

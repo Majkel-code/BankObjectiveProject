@@ -1,6 +1,7 @@
 import json
 import os
 from pathlib import Path
+
 from users.user_authorization.user_reader import UsersReader
 
 
@@ -11,8 +12,8 @@ class TransferMaker:
         self.receiver_to_save = {"history": []}
         self.sender_to_save = {"history": []}
         self.transfers_path = f"{self.path}/transfers/transfer_data/transfers"
-        self.transfers_file = {f"transfers": []}
-        self.to_save = {f"transfers": []}
+        self.transfers_file = {"transfers": []}
+        self.to_save = {"transfers": []}
         self.transfer_struc = {
             "FROM_ACC": None,
             "SENDER": None,
@@ -37,8 +38,8 @@ class TransferMaker:
             with open(f"{self.transfers_path}/{user}.json", "a") as f:
                 f.write(json.dumps(self.transfers_file))
                 return {"STATUS": True, "ERROR": None}
-        except:
-            return {"STATUS": False, "ERROR": "Unable to create file!"}
+        except Exception as e:
+            return {"STATUS": False, "ERROR": "Unable to create file!", "DATA": e}
 
     def find_accounts(self, id: int = None):
         if id is not None:
@@ -46,44 +47,43 @@ class TransferMaker:
                 to_acc_num=None,
                 from_acc_num=None,
                 amount=self.transfer_struc["AMOUNT"],
-                id=id,)
+                id=id,
+            )
         else:
             return UsersReader().find_account(
                 to_acc_num=self.transfer_struc["TO_ACC"],
                 from_acc_num=self.transfer_struc["FROM_ACC"],
-                amount=self.transfer_struc["AMOUNT"])  
+                amount=self.transfer_struc["AMOUNT"],
+            )
 
     def find_user_id(self, acc_num):
         return UsersReader().find_id(acc_num=acc_num)
-    
+
     def income_path_user(self, finded_user_income):
         try:
             if os.path.exists(f"{self.transfers_path}/{finded_user_income['DATA']["ID"]}.json"):
                 return True
-        except:
+        except Exception:
             return False
-        
+
     def outcome_path_user(self, finded_user_outcome):
         try:
             if os.path.exists(f"{self.transfers_path}/{finded_user_outcome["DATA"]}.json"):
                 return True
-        except:
+        except Exception:
             return False
-    
+
     def setup_history_path(self, user, file):
         if os.path.exists(f"{self.history_path}/{user}.json"):
             with open(f"{self.history_path}/{user}.json", "r") as f:
                 file = json.load(f)
             return file
         return False
-    
 
     def save_to_history(self, id):
-        receiver_to_save = {"history": []}
-        sender_to_save = {"history": []}
         if id is not None:
             if self.setup_files(user=id)["STATUS"]:
-                if len(self.transfers_file["transfers"]) >=3:
+                if len(self.transfers_file["transfers"]) >= 3:
                     if os.path.exists(f"{self.history_path}/{id}.json"):
                         with open(f"{self.history_path}/{id}.json", "r") as f:
                             self.receiver_to_save = json.load(f)
@@ -93,49 +93,25 @@ class TransferMaker:
                     self.receiver_to_save["history"].append(self.transfers_file["transfers"][0])
                     del self.transfers_file["transfers"][0]
 
-
                     with open(f"{self.transfers_path}/{id}.json", "w") as f:
                         json.dump(self.transfers_file, f)
 
-
                     with open(f"{self.history_path}/{id}.json", "r+") as f:
-                        f.write(json.dumps(self.receiver_to_save))   
+                        f.write(json.dumps(self.receiver_to_save))
 
-        # if sender is not None:
-        #     if self.setup_files(user=sender)["STATUS"]:
-        #         if len(self.transfers_file["transfers"]) >=3:
-        #             if os.path.exists(f"{self.history_path}/{sender}.json"):
-        #                 with open(f"{self.history_path}/{sender}.json", "r") as f:
-        #                     self.sender_to_save = json.load(f)
-        #             else:
-        #                 with open(f"{self.history_path}/{sender}.json", "a") as f:
-        #                     f.write(json.dumps(self.sender_to_save))
-        #             self.sender_to_save["history"].append(self.transfers_file["transfers"][0])
-        #             del self.transfers_file["transfers"][0]
-
-
-        #             with open(f"{self.transfers_path}/{sender}.json", "w") as f:
-        #                 json.dump(self.transfers_file, f)
-
-
-        #             with open(f"{self.history_path}/{sender}.json", "r+") as f:
-        #                 f.write(json.dumps(self.sender_to_save))   
-                             
-                
     def other_bank_user(self):
         if os.path.exists(f"{self.transfers_path}/differentBank.json"):
             try:
                 with open(f"{self.transfers_path}/differentBank.json", "r+") as f:
                     f.write(json.dumps(self.transfers_file))
                 return {"STATUS": True, "ERROR": None}
-            except:
-                return {"STATUS": False, "ERROR": "Unabe to register transfer!"}
+            except Exception as e:
+                return {"STATUS": False, "ERROR": "Unabe to register transfer!", "DATA": e}
         else:
             with open(f"{self.transfers_path}/differentBank.json", "a") as f:
                 f.write(json.dumps(self.transfers_file))
 
-
-    def save_outcome(self, user_sender, amount):      
+    def save_outcome(self, user_sender, amount):
         user_id = user_sender
         self.transfer_struc["AMOUNT"] = -amount
         self.to_save["transfers"].append(self.transfer_struc)
@@ -145,12 +121,11 @@ class TransferMaker:
                     self.transfers_file["transfers"].append(self.transfer_struc)
                     f.write(json.dumps(self.transfers_file))
                 return {"STATUS": True, "ERROR": None}
-            except:
-                return {"STATUS": False, "ERROR": "Unabe to register transfer!"}
+            except Exception as e:
+                return {"STATUS": False, "ERROR": "Unabe to register transfer!", "DATA": e}
         else:
             with open(f"{self.transfers_path}/{user_id}.json", "a") as f:
                 f.write(json.dumps(self.to_save))
-
 
     def save_income(self, user):
         if self.setup_files(user)["STATUS"]:
@@ -159,12 +134,11 @@ class TransferMaker:
                     self.transfers_file["transfers"].append(self.transfer_struc)
                     f.write(json.dumps(self.transfers_file))
                 return {"STATUS": True, "ERROR": None}
-            except:
-                return {"STATUS": False, "ERROR": "Unabe to register transfer!"}
+            except Exception as e:
+                return {"STATUS": False, "ERROR": "Unabe to register transfer!", "DATA": e}
         else:
             self.transfers_file["transfers"].append(self.transfer_struc)
             return self.create_file(user=user)
-
 
     def credit_income_save(self, id: int, **kwargs):
         print(kwargs)
@@ -177,7 +151,7 @@ class TransferMaker:
         if self.income_path_user(id):
             self.save_to_history(
                 id=id,
-                )
+            )
         try:
             self.save_income(user=finded_user_income['DATA']["ID"])
             return UsersReader().return_user_amount(id=id)
@@ -208,7 +182,7 @@ class TransferMaker:
         if self.income_path_user(id):
             self.save_to_history(
                 id=id,
-                )
+            )
         try:
             self.save_outcome(user_sender=id, amount=kwargs["amount"])
             self.perform_outcome(id=id, send_money=kwargs["amount"])
@@ -216,7 +190,6 @@ class TransferMaker:
         except Exception as e:
             print(e)
             return {"STATUS": False, "ERROR": "Unabe to register credit transfer!", "DATA": e}
-        
 
     def save_transfer(self, **kwargs):
         if kwargs["company"] != '':
@@ -238,11 +211,11 @@ class TransferMaker:
         if self.income_path_user(finded_user_income):
             self.save_to_history(
                 id=finded_user_income['DATA']["ID"],
-                )        
+            )
         if self.outcome_path_user(finded_user_outcome):
             self.save_to_history(
                 id=finded_user_outcome['DATA'],
-                )   
+            )
         try:
             if finded_user_income["STATUS"]:
                 self.transfer_struc["RECEIVER"] = finded_user_income['DATA']["RECEIVER"]
@@ -255,5 +228,3 @@ class TransferMaker:
         except Exception as e:
             print(e)
             return {"STATUS": False, "ERROR": "Unabe to register transfer!", "DATA": e}
-        
-        
