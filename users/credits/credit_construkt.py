@@ -1,6 +1,8 @@
-from pathlib import Path
-import yaml
 import json
+from pathlib import Path
+
+import yaml
+
 from users.transfers.transfer_maker import TransferMaker
 
 
@@ -8,7 +10,7 @@ class CreditConstruct:
     def __init__(self) -> None:
         self.path = Path(__file__).absolute().parents[2]
         self.credit_path = f"{self.path}/users/credits/credit_data"
-        self.credit_file = {f"credits": []}
+        self.credit_file = {"credits": []}
         self.credit_struc = {
             "ID": None,
             "NAME": None,
@@ -43,7 +45,6 @@ class CreditConstruct:
             return {"STATUS": False, "ERROR": "Unabe to save credit data!", "DATA": e}
 
     def add_credit_amount_to_account(self, id, data):
-        print("GO TO SEND TRANSFER")
         return TransferMaker().credit_income_save(id, **data)
 
     def calculate_excess_credit(self, id, data):

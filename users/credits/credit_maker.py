@@ -1,11 +1,10 @@
-import json
 import os
-# import yaml
-# from pathlib import Path
 from datetime import date, datetime
+
 from users.credits.credit_construkt import CreditConstruct
 from users.credits.credit_reader import CreditReader
 from users.user_authorization.user_reader import UsersReader
+
 
 class CreditMaker(CreditConstruct):
     def __init__(self) -> None:
@@ -43,13 +42,15 @@ class CreditMaker(CreditConstruct):
         Returns:
             list: Pair of dates [current, future].
         """
-        
+
         # Get the current date
         current_date = date.today()
-        end_date = date(current_date.year + (current_date.month + credit_months - 1) // 12,
-                        (current_date.month + credit_months - 1) % 12 + 1,
-                        current_date.day)
-        
+        end_date = date(
+            current_date.year + (current_date.month + credit_months - 1) // 12,
+            (current_date.month + credit_months - 1) % 12 + 1,
+            current_date.day,
+        )
+
         return [current_date, end_date]
 
     def calculate_months_between_dates(self, start_date: str, end_date: str):
@@ -93,11 +94,15 @@ class CreditMaker(CreditConstruct):
             actual_apr: Actual Annual Percentage Rate (APR) (in percent).
             total_repayment: Total amount to be repaid (in PLN).
             monthly_payment: Monthly payment amount (in PLN).
-            schedule: List of monthly_payment 
+            schedule: List of monthly_payment
         """
 
         # Monthly payment
-        monthly_payment = loan_amount * (interest_rate * (1 + interest_rate)**loan_term) / ((1 + interest_rate)**loan_term - 1)
+        monthly_payment = (
+            loan_amount
+            * (interest_rate * (1 + interest_rate) ** loan_term)
+            / ((1 + interest_rate) ** loan_term - 1)
+        )
 
         # Total interest
         total_interest = monthly_payment * loan_term - loan_amount
@@ -110,14 +115,19 @@ class CreditMaker(CreditConstruct):
 
         schedule = []
         for month in range(loan_term):
-            schedule.append(round(monthly_payment,2))
+            schedule.append(round(monthly_payment, 2))
         rates_sum = sum(schedule)
         if rates_sum < total_repayment:
             last_rate = total_repayment - rates_sum
-            schedule[-1] = round(schedule[-1] + last_rate,2)
-        
+            schedule[-1] = round(schedule[-1] + last_rate, 2)
 
-        return round(total_interest,2), round(actual_apr,2), round(total_repayment,2), round(monthly_payment,2), schedule
+        return (
+            round(total_interest, 2),
+            round(actual_apr, 2),
+            round(total_repayment, 2),
+            round(monthly_payment, 2),
+            schedule,
+        )
 
     def recalculate_loan(self, schedule, amount, start_month: str, end_month: str, actual_amount):
         """
@@ -154,12 +164,11 @@ class CreditMaker(CreditConstruct):
 
             if amount > 0 and len(schedule) > 0:
                 schedule[-1] -= amount
-                schedule[-1] = round(schedule[-1],2)
+                schedule[-1] = round(schedule[-1], 2)
                 actual_amount -= amount
 
-            return schedule, months_left, round(actual_amount,2)
-        
-          
+            return schedule, months_left, round(actual_amount, 2)
+
     def send_credit_income(self, id, user, amount):
         self.credit_income_info["TO_ACC"] = user["DATA"]["ACC_NUM"]
         self.credit_income_info["RECEIVER"] = f'{user["DATA"]["NAME"]} {user["DATA"]["L_NAME"]}'
@@ -168,28 +177,39 @@ class CreditMaker(CreditConstruct):
         self.credit_income_info["TIME"] = self.take_current_time()
         data = self.credit_income_info
         return self.add_credit_amount_to_account(id, data)
-    
+
     def send_credit_outcome(self, id, data):
         print("IN SEND CREDIT OUTCOME")
         return self.calculate_excess_credit(id, data)
 
-
-    def setup_credit_calculation(self, excess_amount: int = None, operation: str = "REGULAR", **kwargs):
+    def setup_credit_calculation(
+        self, excess_amount: int = None, operation: str = "REGULAR", **kwargs
+    ):
         credit_config = self.load_credit_config()
         interest_rate = credit_config["RRSO"] / 12 / 100
         if operation == "REGULAR":
-            total_interest, actual_apr, total_repayment, monthly_payment, schedule = self.calculate_loan(interest_rate, kwargs["credit"], kwargs["months"])
+            (
+                total_interest,
+                actual_apr,
+                total_repayment,
+                monthly_payment,
+                schedule,
+            ) = self.calculate_loan(interest_rate, kwargs["credit"], kwargs["months"])
             user_data = UsersReader().take_user_data(kwargs["id"])
             if user_data["STATUS"]:
                 if not CreditReader().return_credit_data(kwargs["id"])["STATUS"]:
                     self.credit_struc["ID"] = kwargs["id"]
                     self.credit_struc["NAME"] = user_data["DATA"]["NAME"]
                     self.credit_struc["L_NAME"] = user_data["DATA"]["L_NAME"]
-                    self.credit_struc["START_DATE"] = self.take_credit_dates(kwargs["months"])[0].strftime("%Y-%m-%d")
+                    self.credit_struc["START_DATE"] = self.take_credit_dates(kwargs["months"])[
+                        0
+                    ].strftime("%Y-%m-%d")
                     self.credit_struc["CREDIT_AMOUNT"] = total_repayment
                     self.credit_struc["CREDIT_MONTHLY"] = monthly_payment
                     self.credit_struc["CREDIT_INTEREST"] = total_interest
-                    self.credit_struc["END_DATE"] = self.take_credit_dates(kwargs["months"])[1].strftime("%Y-%m-%d")
+                    self.credit_struc["END_DATE"] = self.take_credit_dates(kwargs["months"])[
+                        1
+                    ].strftime("%Y-%m-%d")
                     self.credit_struc["SCHEDULE"] = schedule
 
                     if os.path.exists(f"{self.credit_path}/{kwargs['id']}.json"):
@@ -198,11 +218,13 @@ class CreditMaker(CreditConstruct):
                         try:
                             self.credit_file["credits"].append(self.credit_struc)
                             if self.create_credit_file(id=kwargs["id"])["STATUS"]:
-                                return self.send_credit_income(id=kwargs["id"], user=user_data, amount=kwargs["credit"])
+                                return self.send_credit_income(
+                                    id=kwargs["id"], user=user_data, amount=kwargs["credit"]
+                                )
                         except Exception as e:
                             print(e)
                             return {"STATUS": False, "ERROR": "Unabe to save credit!", "DATA": e}
-                        
+
         elif operation == "EXCESS":
             user_id = UsersReader().find_id(kwargs["from_acc"])["DATA"]
             take_credit_data = CreditReader().return_credit_data(user_id)
@@ -211,28 +233,35 @@ class CreditMaker(CreditConstruct):
                 print(take_credit_data["DATA"]["credits"][0]["START_DATE"])
 
                 updated_schedule, months_left, left_amount = self.recalculate_loan(
-                    schedule=take_credit_data["DATA"]["credits"][0]["SCHEDULE"], 
-                    amount=excess_amount, 
-                    start_month=take_credit_data["DATA"]["credits"][0]["START_DATE"], 
+                    schedule=take_credit_data["DATA"]["credits"][0]["SCHEDULE"],
+                    amount=excess_amount,
+                    start_month=take_credit_data["DATA"]["credits"][0]["START_DATE"],
                     end_month=take_credit_data["DATA"]["credits"][0]["END_DATE"],
-                    actual_amount=take_credit_data["DATA"]["credits"][0]["CREDIT_AMOUNT"]
-                    )
-                
+                    actual_amount=take_credit_data["DATA"]["credits"][0]["CREDIT_AMOUNT"],
+                )
+
                 self.credit_struc["ID"] = user_id
                 self.credit_struc["NAME"] = user_data["DATA"]["NAME"]
                 self.credit_struc["L_NAME"] = user_data["DATA"]["L_NAME"]
-                self.credit_struc["START_DATE"] = self.take_credit_dates(months_left)[0].strftime("%Y-%m-%d")
+                self.credit_struc["START_DATE"] = self.take_credit_dates(months_left)[0].strftime(
+                    "%Y-%m-%d"
+                )
                 self.credit_struc["CREDIT_AMOUNT"] = left_amount
-                self.credit_struc["CREDIT_MONTHLY"] = take_credit_data["DATA"]["credits"][0]["CREDIT_MONTHLY"]
-                self.credit_struc["CREDIT_INTEREST"] = take_credit_data["DATA"]["credits"][0]["CREDIT_INTEREST"]
-                self.credit_struc["END_DATE"] = self.take_credit_dates(months_left)[1].strftime("%Y-%m-%d")
+                self.credit_struc["CREDIT_MONTHLY"] = take_credit_data["DATA"]["credits"][0][
+                    "CREDIT_MONTHLY"
+                ]
+                self.credit_struc["CREDIT_INTEREST"] = take_credit_data["DATA"]["credits"][0][
+                    "CREDIT_INTEREST"
+                ]
+                self.credit_struc["END_DATE"] = self.take_credit_dates(months_left)[1].strftime(
+                    "%Y-%m-%d"
+                )
                 self.credit_struc["SCHEDULE"] = updated_schedule
                 try:
                     self.credit_file["credits"].append(self.credit_struc)
                     if self.edit_credit_file(user_id)["STATUS"]:
                         return self.send_credit_outcome(id=user_id, data=kwargs)
-                except:
-                    return {"STATUS": False, "ERROR": "Unabe to save credit!"}  
+                except Exception as e:
+                    return {"STATUS": False, "ERROR": "Unabe to save credit!", "DATA": e}
             else:
-                return {"STATUS": False, "ERROR": "Unabe to excess credit!"}    
-
+                return {"STATUS": False, "ERROR": "Unabe to excess credit!"}
