@@ -128,6 +128,6 @@ class UsersReader:
             with open(self.registry_path, "r+") as f:
                 self.registry_file["users"].append(self.registry_struc)
                 f.write(json.dumps(self.registry_file))
-            return {"STATUS": True, "ERROR": None}
+            return {"STATUS": True, "ERROR": None, "DATA": self.registry_struc["ID"]}
         except:
             return {"STATUS": False, "ERROR": "Unabe to register user!"}

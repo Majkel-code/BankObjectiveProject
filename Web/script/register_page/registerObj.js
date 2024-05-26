@@ -7,7 +7,7 @@ const regUser_Password = document.getElementById('reg-password');
 const regUser_repPassword = document.getElementById('reg-password-repeat');
 const sendRegUser = document.getElementById("showToast");
 const popup = document.querySelector(".popup-showToast");
-const popupMsg = document.querySelector(".popup-showToast>p");
+const popupMsg = document.querySelectorAll(".popup-showToast>p");
 const closeMsg = document.querySelector(".popup-showToast>.close-Toast")
 
 const mainRegisterBtn = document.querySelector(".registry-button");
@@ -59,15 +59,16 @@ class RegisterUser extends LoginRegistryConstructor {
             console.log(request_register)
             if(request_register["STATUS"]){
                 popup.classList.add("show-popup");
-                popupMsg.textContent = "Formularz został poprawnie wysłany!";
-            }
+                popupMsg[0].textContent = "Formularz został poprawnie wysłany!";
+                popupMsg[1].textContent = `Twoj numer klienta to: ${request_register["DATA"]}`;
+              }
             else if(!request_register["STATUS"]){
                 popup.classList.add("show-popup");
-                popupMsg.textContent = `${request_register["ERROR"]}`;
+                popupMsg[0].textContent = `${request_register["ERROR"]}`;
             }
             else{
                 popup.classList.add("show-popup");
-                popupMsg.textContent = "Oops! There was some internal error!";
+                popupMsg[0].textContent = "Oops! There was some internal error!";
             }
             this.registerPopupClose();
             this.registerClear();
