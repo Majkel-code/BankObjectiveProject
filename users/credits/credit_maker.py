@@ -8,14 +8,30 @@ from users.user_authorization.user_reader import UsersReader
 
 class CreditMaker(CreditConstruct):
     def __init__(self) -> None:
+        """
+        Initializes a new instance of the CreditMaker class.
+
+        This constructor sets up the necessary attributes for the CreditMaker class. It initializes the following attributes:
+        - `credit_income_info`: A dictionary containing information about a credit income. It has the following keys:
+            - "FROM_ACC": The account number from which the credit income originates.
+            - "SENDER": The sender of the credit income.
+            - "TO_ACC": The account number to which the credit income is sent.
+            - "RECEIVER": The receiver of the credit income.
+            - "AMOUNT": The amount of the credit income.
+            - "DATE": The date of the credit income.
+            - "TIME": The time of the credit income.
+            - "TITLE": The title of the credit income.
+            - "DESC": The description of the credit income.
+
+        Parameters:
+        - None
+
+        Returns:
+        - None
+        """
         super().__init__()
-        # self.path = Path(__file__).absolute().parents[2]
-        # self.credit_path = f"{self.path}/users/credits/credit_data"
-        # self.credit_file = {f"credits": []}
         self.credit_income_info = {
             "FROM_ACC": "9999 9999 9999 9999",
-            # "NAME": None,
-            # "L_NAME": None,
             "SENDER": "CORONA BANK S.A",
             "TO_ACC": None,
             "RECEIVER": None,
@@ -27,6 +43,11 @@ class CreditMaker(CreditConstruct):
         }
 
     def take_current_time(self):
+        """
+        Returns the current time in the format "%H:%M:%S".
+            :return: The current time as a string.
+
+        """
         now = datetime.now()
 
         current_time = now.strftime("%H:%M:%S")
@@ -170,6 +191,17 @@ class CreditMaker(CreditConstruct):
             return schedule, months_left, round(actual_amount, 2)
 
     def send_credit_income(self, id, user, amount):
+        """
+        Sends credit income to a user.
+
+        Args:
+            id (int): The ID of the user.
+            user (dict): The user information.
+            amount (float): The amount of credit income.
+
+        Returns:
+            dict: The result of adding the credit amount to the user's account.
+        """
         self.credit_income_info["TO_ACC"] = user["DATA"]["ACC_NUM"]
         self.credit_income_info["RECEIVER"] = f'{user["DATA"]["NAME"]} {user["DATA"]["L_NAME"]}'
         self.credit_income_info["AMOUNT"] = amount
@@ -179,12 +211,39 @@ class CreditMaker(CreditConstruct):
         return self.add_credit_amount_to_account(id, data)
 
     def send_credit_outcome(self, id, data):
-        print("IN SEND CREDIT OUTCOME")
+        """
+        Sends the credit outcome to the user with the given ID.
+
+        Args:
+            id (int): The ID of the user.
+            data (dict): The data containing the credit outcome information.
+
+        Returns:
+            The result of calculating the excess credit for the user.
+        """
         return self.calculate_excess_credit(id, data)
 
     def setup_credit_calculation(
         self, excess_amount: int = None, operation: str = "REGULAR", **kwargs
     ):
+        """
+        Sets up the credit calculation based on the provided parameters.
+
+        Args:
+            excess_amount (int, optional): The excess amount to be recalculated. Defaults to None.
+            operation (str, optional): The type of operation. Defaults to "REGULAR".
+            **kwargs: Additional keyword arguments.
+
+        Returns:
+            dict: The result of the credit calculation.
+
+                - "STATUS" (bool): Indicates whether the operation was successful.
+                - "ERROR" (str or None): If the operation was not successful, this key contains an error message. Otherwise, it is None.
+                - "DATA" (str or None): If the operation was not successful, this key contains an error message. Otherwise, it is None.
+
+        Raises:
+            Exception: If there is an error while saving the credit.
+        """
         credit_config = self.load_credit_config()
         interest_rate = credit_config["RRSO"] / 12 / 100
         if operation == "REGULAR":

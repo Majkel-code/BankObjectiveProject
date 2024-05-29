@@ -14,6 +14,19 @@ from users.user_authorization.user_reader import UsersReader
 
 class Server:
     def __init__(self) -> None:
+        """
+        Initializes a new instance of the Server class.
+
+        This method initializes the necessary attributes for the Server class, including setting up the FastAPI application,
+        including the routers for login, registration, loading transfers, and taking credit. It also reads the server configuration
+        from a YAML file and sets up the Uvicorn server with the specified configuration.
+
+        Parameters:
+            None
+
+        Returns:
+            None
+        """
         self.origins = ["*"]
         self.app = FastAPI()
         self.app.include_router(login_req.router)

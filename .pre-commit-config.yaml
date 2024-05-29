@@ -24,20 +24,40 @@ repos:
       - id: black
         exclude: (.*pb2.py)
 
-  - repo: https://github.com/pycqa/flake8
-    rev: 7.0.0
-    hooks:
-      - id: flake8
-        entry: pflake8
-        verbose: true
-        additional_dependencies:
-          - flake8-comprehensions>=3.10.1
-          - flake8-noqa>=1.3.0
-          - pyproject-flake8
+  # - repo: https://github.com/PyCQA/pydocstyle
+  #   rev: 6.3.0
+  #   hooks:
+  #     - id: pydocstyle
+  #       args: ["--convention=google", "--add-ignore=D100,D103,D105,D107,D203,D204,D213,D400,D401,D402,D403,D406,D407,D409"]
 
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: "" # Use the sha or tag you want to point at
-    hooks:
-      - id: prettier
-        additional_dependencies:
-          - prettier@2.1.2
+  # - repo: https://github.com/DanielNoord/pydocstringformatter
+  #   rev: v0.3.0
+  #   hooks:
+  #     - id: pydocstringformatter
+  #       args: ["--max-line-length", "80"]
+
+
+  # - repo: https://github.com/PyCQA/docformatter
+  #   rev: v1.7.5
+  #   hooks:
+  #     - id: docformatter
+  #       args: [ --in-place, --force-wrap, --docsting-length=80 80]
+
+
+  # - repo: https://github.com/pycqa/flake8
+  #   rev: 7.0.0
+  #   hooks:
+  #     - id: flake8
+  #       entry: pflake8
+  #       verbose: true
+  #       additional_dependencies:
+  #         - flake8-comprehensions>=3.10.1
+  #         - flake8-noqa>=1.3.0
+  #         - pyproject-flake8
+
+  # - repo: https://github.com/pre-commit/mirrors-prettier
+  #   rev: "" # Use the sha or tag you want to point at
+  #   hooks:
+  #     - id: prettier
+  #       additional_dependencies:
+  #         - prettier@2.1.2
