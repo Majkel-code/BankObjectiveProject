@@ -578,9 +578,6 @@ body {
   width: 100%;
 }
 
-.card_heading {
-}
-
 .card_heading-line1 {
   display: flex;
   justify-content: space-between;
@@ -606,9 +603,6 @@ body {
 .card_heading-line2 span {
   color: #4f4282;
   font-weight: 700;
-}
-
-.dispute-progress-details_main {
 }
 
 .dispute-progress-details_main-chart {
@@ -811,7 +805,7 @@ button {
 }
 
 .popup {
-  display: none; /* ukrywamy domyślnie */
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -828,8 +822,8 @@ button {
   border: 1px solid #888;
   border-radius: 30px;
   width: 50%;
-  height: 50%; /* Ustawiamy wysokość, aby treść mogła przekroczyć tę wartość */
-  overflow-y: auto; /* Dodajemy scroll tylko jeśli treść przekroczy wysokość */
+  height: 50%;
+  overflow-y: auto;
 }
 .close-button {
   border: none;

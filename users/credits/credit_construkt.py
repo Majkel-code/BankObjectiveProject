@@ -83,7 +83,7 @@ class CreditConstruct:
                 f.write(json.dumps(self.credit_file))
             return {"STATUS": True, "ERROR": None, "DATA": None}
         except Exception as e:
-            return {"STATUS": False, "ERROR": "Unabe to save credit data!", "DATA": e}
+            return {"STATUS": False, "ERROR": "Unable to save credit data!", "DATA": e}
 
     def edit_credit_file(self, id):
         """
@@ -108,7 +108,7 @@ class CreditConstruct:
             return {"STATUS": True, "ERROR": None, "DATA": None}
         except Exception as e:
             print(e)
-            return {"STATUS": False, "ERROR": "Unabe to save credit data!", "DATA": e}
+            return {"STATUS": False, "ERROR": "lUnabe to save credit data!", "DATA": e}
 
     def add_credit_amount_to_account(self, id, data):
         """

@@ -45,9 +45,9 @@ class DashboardPage extends MultiPageBridge {
     try {
       this.loggedUserData = JSON.parse(localStorage.myData);
     } catch (error) {
-      return { STATUS: false, ERROR: "unable load data!" };
+      return { "STATUS": false, "ERROR": "unable load data!" };
     }
-    return { STATUS: true, ERROR: null };
+    return { "STATUS": true, "ERROR": null };
   }
 
   async userRefreshLogin() {
