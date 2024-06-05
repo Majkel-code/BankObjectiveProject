@@ -179,7 +179,7 @@ class TransferMaker:
             Exception: If there is an error while checking the income path.
         """
         try:
-            if os.path.exists(f"{self.transfers_path}/{finded_user_income['DATA']["ID"]}.json"):
+            if os.path.exists(f"{self.transfers_path}/{finded_user_income['DATA']['ID']}.json"):
                 return True
         except Exception:
             return False
@@ -200,7 +200,7 @@ class TransferMaker:
             bool: True if the outcome path exists, False otherwise.
         """
         try:
-            if os.path.exists(f"{self.transfers_path}/{finded_user_outcome["DATA"]}.json"):
+            if os.path.exists(f"{self.transfers_path}/{finded_user_outcome['DATA']}.json"):
                 return True
         except Exception:
             return False
